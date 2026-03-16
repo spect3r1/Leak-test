@@ -22,12 +22,15 @@ deployment = Deployment(
     name="prod-api",
     containers=[
         Container(
-            name="api",
             image="docker.io/acme/private-api:latest",
             exposed_port=8080,
+            name="api",
         )
     ],
-    compute=ComputeResource(vcpu=2, memory=4),
+    compute=ComputeResource(
+        name="cpu",
+        size=2,
+    ),
     container_registry_settings=ContainerRegistrySettings(
         is_private=True,
         credentials=registry_creds,
